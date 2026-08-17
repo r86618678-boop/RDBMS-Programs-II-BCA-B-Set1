@@ -1,16 +1,42 @@
 #!/bin/bash
 
-mysql -uroot -proot < solution.sql
+set -e
 
-mysql -uroot -proot -e "
+MYSQL="mysql -h127.0.0.1 -P3306 -uroot -proot"
+
+echo "====================================="
+echo "Running Assignment 02"
+echo "====================================="
+
+echo "Executing solution.sql..."
+
+$MYSQL < solution.sql
+
+echo "Checking Student table..."
+
+$MYSQL -e "
 USE CollegeDB;
 DESCRIBE Student;
 " > output.txt
 
-grep -q "StudentID" output.txt || exit 1
-grep -q "StudentName" output.txt || exit 1
-grep -q "DOB" output.txt || exit 1
-grep -q "Gender" output.txt || exit 1
-grep -q "DepartmentID" output.txt || exit 1
+echo "Checking columns..."
 
-echo "PASS"
+grep -q "StudentID" output.txt
+echo "✓ StudentID exists"
+
+grep -q "StudentName" output.txt
+echo "✓ StudentName exists"
+
+grep -q "DOB" output.txt
+echo "✓ DOB exists"
+
+grep -q "Gender" output.txt
+echo "✓ Gender exists"
+
+grep -q "DepartmentID" output.txt
+echo "✓ DepartmentID exists"
+
+echo ""
+echo "====================================="
+echo "Assignment 02 PASSED"
+echo "====================================="
