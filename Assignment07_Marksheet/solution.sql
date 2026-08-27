@@ -1,6 +1,12 @@
-DROP DATABASE IF EXISTS CollegeDB;
-CREATE DATABASE CollegeDB;
-USE CollegeDB;
+CREATE DATABASE collegeDB;
+USE collegeDB;
+CREATE TABLE Student (
+     StudentID INT PRIMARY KEY,
+     StudentName VARCHAR(50),
+     Age INT,
+     Department VARCHAR(30)
+);
+desc Department
 -- Create Marksheet table
 
 -- Insert sample records
